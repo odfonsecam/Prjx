@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botones y Búsqueda</title>
+    <link rel="stylesheet" href="inicio.component.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Columna izquierda: Botones -->
+        <div class="columna-izquierda">
+            <h2 class="titulo">Tus proyectos</h2>
+            <div class="botones">
+                <div *ngIf="proyectos.length === 0">Ups, no hay proyectos</div>
+                <!-- Usamos *ngFor para iterar sobre los proyectos -->
+                <button *ngFor="let proyecto of proyectosFiltrados | slice:0:4" class="btn">
+                    {{ proyecto.descripcion }}
+                </button>
+            </div>
+        </div>
+
+        <!-- Columna derecha: Búsqueda y lista -->
+        <div class="columna-derecha">
+            <div class="busqueda">
+                <input type="text" placeholder="Buscar tus proyectos" class="input-busqueda" (input)="buscarProyecto($event)">
+                <button class="btn-buscar">Buscar</button>
+              </div>
+            <div class="lista-container">
+                <ul class="lista-tareas" *ngFor="let tarea of tareas | slice:0:4">
+                    <li><label><input type="checkbox"> {{ tarea.descripcion }} </label></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
